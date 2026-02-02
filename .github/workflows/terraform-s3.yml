@@ -8,16 +8,15 @@ on:
 
 jobs:
   terraform:
-    name: Terraform Validate → Plan → Apply
+    name: Terraform Validate Plan Apply
     runs-on: ubuntu-latest
 
-   defaults:
-  run:
-    working-directory: cicd-poc/terraform/environments/stage
-
+    defaults:
+      run:
+        working-directory: cicd-poc/terraform/environments/stage
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Terraform
