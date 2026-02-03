@@ -9,3 +9,8 @@ variable "environment" {
 variable "bucket_name" {
   type = string
 }
+
+variable "key_name" {
+  description = "Name of the AWS Key Pair"
+  type        = string
+}
