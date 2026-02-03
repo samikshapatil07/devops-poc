@@ -8,16 +8,16 @@ on:
 
 jobs:
   terraform:
-    name: Terraform Validate Plan Apply
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: terraform/environments/stage
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Show repo structure (DEBUG)
+        run: |
+          pwd
+          ls -R
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -32,13 +32,21 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Terraform Init
-        run: terraform init
+        run: |
+          cd terraform/environments/stage
+          terraform init
 
       - name: Terraform Validate
-        run: terraform validate
+        run: |
+          cd terraform/environments/stage
+          terraform validate
 
       - name: Terraform Plan
-        run: terraform plan -out=tfplan
+        run: |
+          cd terraform/environments/stage
+          terraform plan -out=tfplan
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve tfplan
+        run: |
+          cd terraform/environments/stage
+          terraform apply -auto-approve tfplan
