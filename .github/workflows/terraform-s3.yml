@@ -1,5 +1,4 @@
 name: Terraform S3 - Stage
-
 on:
   push:
     branches:
