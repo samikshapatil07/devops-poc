@@ -13,7 +13,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: cicd-poc/terraform/environments/stage
+        working-directory: working-directory: terraform/environments/stage
 
     steps:
       - name: Checkout repository
