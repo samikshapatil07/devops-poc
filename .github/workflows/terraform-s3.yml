@@ -13,7 +13,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: working-directory: terraform/environments/stage
+        working-directory: terraform/environments/stage
 
     steps:
       - name: Checkout repository
