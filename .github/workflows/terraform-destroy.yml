@@ -1,19 +1,21 @@
 name: Terraform Destroy - Stage
 
 on:
-  workflow_dispatch: # Manual trigger only!
+  workflow_dispatch:
 
 jobs:
   terraform-destroy:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: terraform/environments/stage # Corrected path
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      # DEBUG STEP: List files to confirm structure
+      - name: List files (Debug)
+        run: |
+          echo "Current directory: $(pwd)"
+          ls -R
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -28,8 +30,9 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Terraform Init
+        working-directory: terraform/environments/stage
         run: terraform init
 
       - name: Terraform Destroy
-        # WARNING: This will destroy your infrastructure!
+        working-directory: terraform/environments/stage
         run: terraform destroy -auto-approve
