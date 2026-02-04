@@ -1,4 +1,4 @@
-name: Terraform S3 - Stage
+name: Terraform - Stage
 on:
   push:
     branches:
@@ -11,7 +11,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: cicd-poc/terraform/environments/stage
+        working-directory: terraform/environments/stage
 
     steps:
       - name: Checkout repository
